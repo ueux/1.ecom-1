@@ -176,4 +176,42 @@ const changeCurrentPassword = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, {}, "Password changed successfully"));
 });
 
-export { createUser,loginUser ,logoutUser,updateUserData,changeCurrentPassword ,getUserProfile,getAllUsers};
+const deleteUserById = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id);
+  if (user) {
+    if (user.isAdmin) throw new ApiError(400, "Cannot delete admin");
+    await User.deleteOne({ _id: user._id })
+    res.json(new ApiResponse(200,{},"User removed"))
+  }
+  else  throw new ApiError(400, "user not found");
+});
+
+const getUserById = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id).select("-password");
+  if (user) {
+
+    res.status(200).json(new ApiResponse(200, {user},"This User"))
+  }
+  else  throw new ApiError(400, "user not found");
+});
+
+const updateUserById = asyncHandler(async (req, res) => {
+  const { username,isAdmin, email } = req.body;
+  const user = await User.findByIdAndUpdate(
+    req.params.id,
+    {
+      $set: {
+        username,
+        email: email,
+        isAdmin
+      },
+    },
+    { new: true }
+  ).select("-password");
+  return res
+    .status(200)
+    .json(new ApiResponse(200, user, "Account details updated successfully"));
+});
+
+
+export { createUser,updateUserById,getUserById,loginUser,deleteUserById ,logoutUser,updateUserData,changeCurrentPassword ,getUserProfile,getAllUsers};
