@@ -132,4 +132,48 @@ const getAllUsers = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, users, "All Users"));
 })
 
-export { createUser,loginUser ,logoutUser ,getAllUsers};
+const getUserProfile = asyncHandler(async (req, res) => {
+  const user = await User.find(req.user._id)
+  return res
+    .status(200)
+    .json(new ApiResponse(200, {user}, "All Users"));
+})
+
+const updateUserData = asyncHandler(async (req, res) => {
+  const { username, email } = req.body;
+  // if (!username || !email) {
+  //   throw new ApiError(400, "All fields are required");
+  // }
+  const user = await User.findByIdAndUpdate(
+    req.user?._id,
+    {
+      $set: {
+        username,
+        email: email,
+      },
+    },
+    { new: true }
+  ).select("-password");
+  return res
+    .status(200)
+    .json(new ApiResponse(200, user, "Account details updated successfully"));
+});
+
+const changeCurrentPassword = asyncHandler(async (req, res) => {
+  const { oldPassword, confirmPassword, newPassword } = req.body;
+  if (confirmPassword !== oldPassword) {
+    throw new ApiError(400, "Confirm Password does not match");
+  }
+  const user = await User.findById(req.user?._id);
+  const isPasswordCorrect = await user.isPasswordCorrect(oldPassword);
+  if (!isPasswordCorrect) {
+    throw new ApiError(400, "Invalid old password");
+  }
+  user.password = newPassword;
+  await user.save({ validateBeforeSave: false });
+  return res
+    .status(200)
+    .json(new ApiResponse(200, {}, "Password changed successfully"));
+});
+
+export { createUser,loginUser ,logoutUser,updateUserData,changeCurrentPassword ,getUserProfile,getAllUsers};
