@@ -43,30 +43,30 @@ const Register = () => {
     }
   }
   return (
-    <section className="pl-[10rem] flex flex-wrap">
+    <section className="pl-[10rem] flex flex-nowrap">
       <div className="mr-[4rem] mt-[5rem]">
           <h1 className="text-2xl font-semibold mb-4">Register</h1>
         <form onSubmit={submitHandler} className="container w-[40rem]">
         <div className="my-[2rem] ">
-                <lable htmlFor="name" className="text-black black text-sm font-medium ">
+                <lable htmlFor="name" className="text-black block text-sm font-medium ">
                     Name
                 </lable>
                 <input type="text" id="name" className="mt-1 p-2 border rounded w-full" value={username}  onChange={(e)=>setUserName(e.target.value)}/>
             </div>
             <div className="my-[2rem] ">
-                <lable htmlFor="email" className="text-black black text-sm font-medium ">
+                <lable htmlFor="email" className="text-black block text-sm font-medium ">
                     Email Address
                 </lable>
                 <input type="email" id="email" className="mt-1 p-2 border rounded w-full"  value={email}  onChange={(e)=>setEmail(e.target.value)}/>
             </div>
             <div className="my-[2rem] ">
-                <lable htmlFor="password" className="text-black black text-sm font-medium ">
+                <lable htmlFor="password" className="text-black block text-sm font-medium ">
                     Password
                 </lable>
                 <input type="password" id="password" className="mt-1 p-2 border rounded w-full" value={password}  onChange={(e)=>setPassword(e.target.value)}/>
           </div>
           <div className="my-[2rem] ">
-                <lable htmlFor="confirmPassword" className="text-black black text-sm font-medium ">
+                <lable htmlFor="confirmPassword" className="text-block black text-sm font-medium ">
                     Confirm Password
                 </lable>
                 <input type="password" id="confirmPassword" className="mt-1 p-2 border rounded w-full" value={confirmPassword}  onChange={(e)=>setConfirmPassword(e.target.value)}/>
@@ -84,7 +84,7 @@ const Register = () => {
       <img
         src="https://images.unsplash.com/photo-1576502200916-3808e07386a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2065&q=80"
         alt=""
-        className="h-[65rem] w-[59%] xl:block md:hidden sm:hidden rounded-lg"
+        className="h-[45rem] w-[48%] xl:block md:hidden sm:hidden rounded-lg"
       />
     </section>
   )
