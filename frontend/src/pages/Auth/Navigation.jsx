@@ -10,7 +10,10 @@ import { FaHeart } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import "./Navigation.css";
 import { useSelector, useDispatch } from "react-redux";
-import { useLoginMutation, useLogoutMutation } from "../../redux/api/useraApiSlice";
+import {
+  useLoginMutation,
+  useLogoutMutation,
+} from "../../redux/api/usersApiSlice";
 import { logout } from "../../redux/features/auth/authSlice";
 const Navigation = () => {
   const { userInfo } = useSelector((state) => state.auth);
@@ -106,8 +109,8 @@ const Navigation = () => {
         </button>
         {dropdownOpen && userInfo && (
           <ul
-            className={`absolute  mt-2 right-7 space-y-1 bg-black text-gray-600 ${
-              !userInfo.data.user.isAdmin ? "-top-40" : "-top-100"
+            className={`absolute  mt-2 right-7 space-y-1 bg-gray-700 text-gray-600 ${
+              !userInfo.data.user.isAdmin ? "-top-40" : "-top-96"
             } `}
           >
             {userInfo.data.user.isAdmin && (
@@ -154,13 +157,16 @@ const Navigation = () => {
                 </li>
               </>
             )}
-             <li>
+            <li>
               <Link to="/profile" className="block px-4 py-2 hover:bg-gray-100">
                 Profile
               </Link>
             </li>
             <li>
-              <Link to="/password" className="block px-4 py-2 hover:bg-gray-100">
+              <Link
+                to="/password"
+                className="block px-4 py-2 hover:bg-gray-100"
+              >
                 Change Password
               </Link>
             </li>
