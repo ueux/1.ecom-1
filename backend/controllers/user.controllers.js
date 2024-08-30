@@ -129,7 +129,7 @@ const getAllUsers = asyncHandler(async (req, res) => {
   const users = await User.find({})
   return res
     .status(200)
-    .json(new ApiResponse(200, users, "All Users"));
+    .json(new ApiResponse(200, {users}, "All Users"));
 })
 
 const getUserProfile = asyncHandler(async (req, res) => {
@@ -156,12 +156,12 @@ const updateUserData = asyncHandler(async (req, res) => {
   ).select("-password");
   return res
     .status(200)
-    .json(new ApiResponse(200, user, "Account details updated successfully"));
+    .json(new ApiResponse(200, {user}, "Account details updated successfully"));
 });
 
 const changeCurrentPassword = asyncHandler(async (req, res) => {
   const { oldPassword, confirmPassword, newPassword } = req.body;
-  if (confirmPassword !== oldPassword) {
+  if (confirmPassword !== newPassword) {
     throw new ApiError(400, "Confirm Password does not match");
   }
   const user = await User.findById(req.user?._id);
@@ -171,9 +171,12 @@ const changeCurrentPassword = asyncHandler(async (req, res) => {
   }
   user.password = newPassword;
   await user.save({ validateBeforeSave: false });
+  const updatedUser=await User.findById(user._id).select(
+    "-password "
+  );
   return res
     .status(200)
-    .json(new ApiResponse(200, {}, "Password changed successfully"));
+    .json(new ApiResponse(200, {user:updatedUser}, "Password changed successfully"));
 });
 
 const deleteUserById = asyncHandler(async (req, res) => {
