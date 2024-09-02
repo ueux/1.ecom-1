@@ -140,7 +140,7 @@ const addProductReviews=asyncHandler(async (req, res) => {
 })
 const fetchTopProducts = asyncHandler(async (req, res) => {
     try {
-        const products = await Product.find({}).sort({ rating: -1 }).limit(5)
+        const products = await Product.find({}).sort({ rating: -1 }).limit(4)
         res.json(new ApiResponse(200,{products},"Top Products"))
     } catch (error) {
         throw new ApiError(400,error.message)

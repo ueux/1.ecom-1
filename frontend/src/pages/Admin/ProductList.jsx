@@ -37,9 +37,8 @@ const ProductList = () => {
       productData.append("quantity", quantity);
       productData.append("brand", brand);
         productData.append("countInStock", stock);
-        console.log(productData)
+
         const  {data}  = await createProduct(productData);
-        console.log(data)
 
       if (data.error) {
         toast.error("Product create failed. Try Again.");
@@ -55,8 +54,7 @@ const ProductList = () => {
 
     const uploadFileHandler = async (e) => {
         const formData = new FormData();
-    formData.append("image", e.target.files[0]);
-
+      formData.append("image", e.target.files[0]);
     try {
       const res = await uploadProductImage(formData).unwrap();
       toast.success(res.message);
@@ -72,8 +70,7 @@ const ProductList = () => {
       <div className="flex flex-col md:flex-row">
         <AdminMenu />
         <div className="md:w-3/4 p-3">
-                  <div className="h-12">Create Product</div>
-                  {console.log(imageUrl)}
+         <div className="h-12">Create Product</div>
           {imageUrl && (
             <div className="text-center">
               <img
