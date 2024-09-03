@@ -7,7 +7,7 @@ import {
   setCategories,
   setProducts,
   setChecked,
-} from "../redux/features/shop/shopSlice";
+} from "../redux/features/shop/shopSlice.js";
 import Loader from "../components/Loader";
 import ProductCard from "./Products/ProductCard";
 

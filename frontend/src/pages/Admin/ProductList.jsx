@@ -55,9 +55,11 @@ const ProductList = () => {
     const uploadFileHandler = async (e) => {
         const formData = new FormData();
       formData.append("image", e.target.files[0]);
+      console.log(e.target.files[0])
     try {
       const res = await uploadProductImage(formData).unwrap();
       toast.success(res.message);
+      console.log(res)
       setImage(res.data.image);
       setImageUrl(res.data.image);
     } catch (error) {
