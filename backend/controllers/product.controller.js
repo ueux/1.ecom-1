@@ -10,9 +10,9 @@ const addProduct = asyncHandler(async (req, res) => {
             case!name:return res.json({error:"Name is required"})
             case!description:return res.json({error:"Description is required"})
             case!price:return res.json({error:"price is required"})
-            case!category:return res.json({error:"category is required"})
             case!quantity:return res.json({error:"quantity is required"})
             case!brand:return res.json({error:"brand is required"})
+            case!category:return res.json({error:"category is required"})
         }
         const product = new Product({ ...req.fields })
         await product.save()
@@ -104,7 +104,7 @@ const fetchProductById = asyncHandler(async (req, res) => {
 })
 const fetchAllProducts = asyncHandler(async (req, res) => {
     try {
-        const products = await Product.find({}).populate("category").limit(12).sort({createAt:-1})
+        const products = await Product.find({}).populate("category").limit().sort({createAt:-1})
         res.json(new ApiResponse(200,{products},'Here Are All Products'))
     } catch (error) {
         throw new ApiError(500,error.message)
