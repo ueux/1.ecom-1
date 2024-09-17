@@ -48,4 +48,4 @@ This is a full-stack e-commerce platform developed using **React**, **Redux Tool
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/ueux/ecommerce-platform.git
+   git clone https://github.com/ueux/1.ecom-1.git
