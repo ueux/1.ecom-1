@@ -43,6 +43,8 @@ This is a full-stack e-commerce platform developed using **React**, **Redux Tool
 - **Node.js** (v16.x or above)
 - **MongoDB** (locally or a cloud service like MongoDB Atlas)
 
+![thumnail](/thumb.png)
+
 ### Installation Steps
 
 1. Clone the repository:
