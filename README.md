@@ -1,5 +1,7 @@
 # E-Commerce Platform
 
+![thumnail](/thumb.png)
+
 This is a full-stack e-commerce platform developed using **React**, **Redux Toolkit**, **Vite**, and **Express.js** with **MongoDB** for data storage. It includes features for user authentication, payment integration, and product management.
 
 ## Features
@@ -43,7 +45,6 @@ This is a full-stack e-commerce platform developed using **React**, **Redux Tool
 - **Node.js** (v16.x or above)
 - **MongoDB** (locally or a cloud service like MongoDB Atlas)
 
-![thumnail](/thumb.png)
 
 ### Installation Steps
 
